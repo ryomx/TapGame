@@ -29,7 +29,7 @@ public class BaseController : MonoBehaviour {
 		
 		if ("Ball".Equals(other.gameObject.tag)) {
 
-			// プレートの色変更メソッドを呼び出す
+			// Baseオブジェクトの色変更メソッドを呼び出す
 			StartCoroutine (changeColer());
 
 			// タップ成功フラグをfalseに初期化
