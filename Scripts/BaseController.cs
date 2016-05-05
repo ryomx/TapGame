@@ -4,15 +4,16 @@ using System.Collections;
 public class BaseController : MonoBehaviour {
 
 	public GameObject effectPrefab;
-	private Vector3 effectRotation = new Vector3(0.0f,0.0f,0.0f);
-	// 落下してくるボールと衝突時の色
+	/** 落下してくるボールと衝突時の色 */
 	private Color collisionColer = new Color(1f, 0.4f, 1f, 0.7f);
+
+	private Vector3 effectRotation = new Vector3(0.0f,0.0f,0.0f);
 	private GameController gameController;
+	/** タップ成功判定用フラグ */
 	private bool isTapSuccess = false;
 
 	// Use this for initialization
 	void Start () {
-//		Controller = gameController.GetComponent<GameController>();
 		gameController = GetComponent<GameController>();
 	}
 	
@@ -21,7 +22,9 @@ public class BaseController : MonoBehaviour {
 	
 	}
 
-	// 衝突時の処理
+	/** 
+	 * Ballオブジェクトと衝突時の処理 
+	 */
 	void OnTriggerEnter (Collider other) {
 		
 		if ("Ball".Equals(other.gameObject.tag)) {
@@ -42,10 +45,7 @@ public class BaseController : MonoBehaviour {
 	/** 
 	 * BaseオブジェクトをタップしたときにBallオブジェクトとの衝突判定と衝突時の処理
 	*/
-	public void isValidTapped(){
-
-//		// タップ成功判定用フラグ
-//		bool isTapSuccess = false;
+	public void baseTapped(){
 
 		// Baseオブジェクトのレンダラーを取得
 		Renderer renderer = transform.gameObject.GetComponent<Renderer>();
@@ -61,23 +61,7 @@ public class BaseController : MonoBehaviour {
 				transform.position,
 				Quaternion.Euler(effectRotation)
 				);
-
-			
-//			// BallControllerに持たせているタップ成功フラグを成功にする
-//			BallController ballController = other.gameObject.GetComponent<BallController>();
-//			ballController.setTapSuccess();
-			
-//			// タップが成功の場合
-//			if (ballController.getTapSuccess()) {
-//				gameController.tapSuccess();
-//				
-//				// タップが失敗の場合
-//			} else {
-//				gameController.tapFail();
-//			}
-
 		}
-//		return isTapSuccess;
 	}
 
 	/**

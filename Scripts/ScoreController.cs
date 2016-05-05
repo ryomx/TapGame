@@ -3,30 +3,53 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class ScoreController : MonoBehaviour {
-
-	public Text scoreText; //Score表示用変数
-	public Text LifeText; //Life表示用変数
-	public Text comboText; //Combo表示用変数
-	
+	/** Score表示用変数 */
+	public Text scoreText;
+	/** Life表示用変数 */
+	public Text LifeText; 
+	/** Combo表示用変数 */
+	public Text comboText;
+	/** ゲームクリア判定値 */
+	public const int gameClearScore = 10;
+	/** Score表示用文字列 */
 	private const string scoreDefaultVal = "Score:";
+	/** Life表示用文字列 */
 	private const string lifeDefaultVal = "Life:";
+	/** Combo表示用文字列 */
 	private const string comboDefaultVal = " Combo";
 	private int score = 0;
 	private int life = 5;
 	private int combo = 0;
-	
+
+	/**
+	 * スコアを加算
+	 */
 	public void addScore(){
+		if(score < gameClearScore) {
+
+		}
 		score++;
 	}
-	
+
+	/**
+	 * スコアを取得
+	 */
 	public int getScore(){
 		return this.score;
 	}
-	
+
+	/**
+	 * ライフを減算
+	 */
 	public void subLife(){
-		life--;
+		if(life > 0) {
+			life--;
+		} 
 	}
-	
+
+	/**
+	 * ライフを取得
+	 */
 	public int getLife(){
 		return this.life;
 	}
@@ -42,21 +65,17 @@ public class ScoreController : MonoBehaviour {
 			combo = 0;
 		}
 	}
-	
-	
-	
+
+	/**
+	 * コンボを取得
+	 */
 	public int getCombo(){
 		return this.combo;
 	}
-	
-	//	public void setTapSuccess(bool isSuccessTap){
-	//		if (isSuccessTap) {
-	//			life++;
-	//		} else {
-	//			life = 0;
-	//		}
-	//	}
-	
+
+	/**
+	 * スコアなどの表示を更新
+	 */
 	void LateUpdate (){
 		scoreText.text = scoreDefaultVal + score;
 		LifeText.text = lifeDefaultVal + life;
